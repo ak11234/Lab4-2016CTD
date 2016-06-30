@@ -73,6 +73,7 @@ public class LargeNumber {
     }
     public LargeNumber minus(LargeNumber other){
         int len,lenother;
+        boolean overflow=false;
         LargeNumber newToAdd = new LargeNumber("");
         LargeNumber oldToAdd = new LargeNumber(strNum);
         LargeNumber sum = new LargeNumber("");
@@ -81,15 +82,24 @@ public class LargeNumber {
         lenother=other.strNum.length();
         for (int c=1 ; c<=lenother ; c++){
             if (c==lenother){
-                newToAdd.strNum+=Integer.toString(10-(Integer.parseInt(other.strNum.substring(c-1,c))));
+                if (other.strNum.substring(c-1,c).equals("0")) {
+                    newToAdd.strNum+="0";
+                    overflow=true;
+                } else {
+                    newToAdd.strNum+=Integer.toString(10-(Integer.parseInt(other.strNum.substring(c-1,c))));
+                }
             } else {
                 newToAdd.strNum+=Integer.toString(9-(Integer.parseInt(other.strNum.substring(c-1,c))));
             }
+            System.out.println("nta: " + newToAdd);
         }
         sum = oldToAdd.plus(newToAdd);
         result.strNum = sum.strNum.substring(1); //shave off first number
         while (result.strNum.substring(0,1).equals("0")){ //Check to make sure first num isn't 0
             result.strNum = result.strNum.substring(1); //if it is, deal with it
+        }
+        if (overflow==true){
+            result.strNum=Integer.toString(Integer.parseInt(result.strNum)+10);
         }
         return result;
     }
@@ -119,7 +129,7 @@ public class LargeNumber {
         for (int k=answerstack.size() ; k>=1 ; k--){
             result.strNum+=answerstack.pop();
         }
-        System.out.println("timesone result is: " + result);
+        //System.out.println("timesone result is: " + result);
         return result;
     }
     public LargeNumber times(LargeNumber other){
@@ -139,10 +149,10 @@ public class LargeNumber {
             //System.out.println("post loop");
             product=(other.timesByOne(Integer.parseInt(strNum.substring(c-1,c))));
             product.strNum=product.strNum+zeros;
-            System.out.println("product is: " + product);
+            //System.out.println("product is: " + product);
             result = result.plus(product);
-            System.out.println("result is currently: " + result);
-            System.out.println("end c: " + c);
+            //System.out.println("result is currently: " + result);
+            //System.out.println("end c: " + c);
         }
         return result;
     }
