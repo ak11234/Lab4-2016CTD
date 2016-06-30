@@ -62,12 +62,35 @@ public class LargeNumber {
                 answerstack.push(strSum);
             }
         }
+        if (remainder!=0){ //If the last number we calculate has a number to carry over, check and do it now.
+            answerstack.push(Integer.toString(remainder));
+        }
         LargeNumber result = new LargeNumber("");
         for (int k=answerstack.size() ; k>=1 ; k--){
             result.strNum+=answerstack.pop();
         }
-        System.out.println(answerstack);
-        System.out.println(strNum);
+        return result;
+    }
+    public LargeNumber minus(LargeNumber other){
+        int len,lenother;
+        LargeNumber newToAdd = new LargeNumber("");
+        LargeNumber oldToAdd = new LargeNumber(strNum);
+        LargeNumber sum = new LargeNumber("");
+        LargeNumber result = new LargeNumber("");
+        len=strNum.length();
+        lenother=other.strNum.length();
+        for (int c=1 ; c<=lenother ; c++){
+            if (c==lenother){
+                newToAdd.strNum+=Integer.toString(10-(Integer.parseInt(other.strNum.substring(c-1,c))));
+            } else {
+                newToAdd.strNum+=Integer.toString(9-(Integer.parseInt(other.strNum.substring(c-1,c))));
+            }
+        }
+        sum = oldToAdd.plus(newToAdd);
+        result.strNum = sum.strNum.substring(1); //shave off first number
+        while (result.strNum.substring(0,1).equals("0")){ //Check to make sure first num isn't 0
+            result.strNum = result.strNum.substring(1); //if it is, deal with it
+        }
         return result;
     }
 }
