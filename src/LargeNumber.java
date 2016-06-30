@@ -80,6 +80,11 @@ public class LargeNumber {
         LargeNumber result = new LargeNumber("");
         len=strNum.length();
         lenother=other.strNum.length();
+        if (len>lenother){
+            int difference=len-lenother;
+            other.strNum=leftPad(other.strNum,difference);
+            lenother=len;
+        }
         for (int c=1 ; c<=lenother ; c++){
             if (c==lenother){
                 if (other.strNum.substring(c-1,c).equals("0")) {
