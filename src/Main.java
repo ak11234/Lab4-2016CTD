@@ -3,9 +3,9 @@
  */
 public class Main {
     public static void main(String[] args){
-        LargeNumber n1 = new LargeNumber("11111"); //5-1s
+        LargeNumber n1 = new LargeNumber("3984759308385939848");
         System.out.println(n1);
-        LargeNumber n2 = new LargeNumber("222222");//6-2s
+        LargeNumber n2 = new LargeNumber("892735402589013479827350");
         System.out.println(n2);
         System.out.println(n1.plus(n2));
 
