@@ -9,5 +9,9 @@ public class Main {
         LargeNumber n3 = new LargeNumber("1492");
         LargeNumber n4 = new LargeNumber("1066");
         System.out.println(n3 + " - " + n4 + " = " + n3.minus(n4));
+        LargeNumber n5 = new LargeNumber("1213");
+        LargeNumber n6 = new LargeNumber("201");
+        System.out.println(n5 + " * " + "2" + " = " + n5.timesByOne(2));
+        System.out.println(n5 + " * " + n6 + " = " + n5.times(n6));
     }
 }

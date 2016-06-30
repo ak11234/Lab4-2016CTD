@@ -93,4 +93,57 @@ public class LargeNumber {
         }
         return result;
     }
+    public LargeNumber timesByOne(int other){
+        int len,remainder=0;
+        String strProduct;
+        Stack <String> answerstack = new Stack <String>();
+        len=strNum.length();
+        int num1,num2,product=0;
+        for (int c=len ; c>0 ; c--){
+            num1=Integer.parseInt(strNum.substring(c-1,c));
+            product=(num1*other)+remainder;
+            remainder=0;
+            strProduct=Integer.toString(product);
+            if (product>9){
+                //split nums and do stuff
+                answerstack.push(strProduct.substring(1,2));
+                remainder=Integer.parseInt(strProduct.substring(0,1));
+            } else {
+                answerstack.push(strProduct);
+            }
+        }
+        if (remainder!=0){ //If the last number we calculate has a number to carry over, check and do it now.
+            answerstack.push(Integer.toString(remainder));
+        }
+        LargeNumber result = new LargeNumber("");
+        for (int k=answerstack.size() ; k>=1 ; k--){
+            result.strNum+=answerstack.pop();
+        }
+        System.out.println("timesone result is: " + result);
+        return result;
+    }
+    public LargeNumber times(LargeNumber other){
+        LargeNumber product= new LargeNumber("");
+        LargeNumber result=new LargeNumber("0");
+        int len,zeroamt=0;
+        String zeros="";
+        len=strNum.length();
+        for (int c=len ; c>0 ; c--){
+          //  System.out.println("hello world");
+            zeroamt=(len-c);
+            zeros="";
+          //  System.out.println("zero: " + zeroamt);
+            for (int z=zeroamt ; z>=1 ; z--){
+                zeros+="0";
+            }
+            //System.out.println("post loop");
+            product=(other.timesByOne(Integer.parseInt(strNum.substring(c-1,c))));
+            product.strNum=product.strNum+zeros;
+            System.out.println("product is: " + product);
+            result = result.plus(product);
+            System.out.println("result is currently: " + result);
+            System.out.println("end c: " + c);
+        }
+        return result;
+    }
 }
