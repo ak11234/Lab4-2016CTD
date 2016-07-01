@@ -96,7 +96,7 @@ public class LargeNumber {
             } else {
                 newToAdd.strNum+=Integer.toString(9-(Integer.parseInt(other.strNum.substring(c-1,c))));
             }
-            System.out.println("nta: " + newToAdd);
+            //System.out.println("nta: " + newToAdd);
         }
         sum = oldToAdd.plus(newToAdd);
         result.strNum = sum.strNum.substring(1); //shave off first number

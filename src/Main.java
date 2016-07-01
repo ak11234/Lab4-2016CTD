@@ -3,7 +3,7 @@
  */
 public class Main {
     public static void main(String[] args){
-        LargeNumber n1 = new LargeNumber("21979006097993007202063791205781603194701973067");
+        LargeNumber n1 = new LargeNumber("526658798989458606");
         LargeNumber n2 = new LargeNumber("513821973481246926751192945");
         System.out.println(n1 + " + " + n2 + " = " + n1.plus(n2));
         LargeNumber n3 = new LargeNumber("95874");
